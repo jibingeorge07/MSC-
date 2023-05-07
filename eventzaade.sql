@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 24, 2023 at 07:23 PM
+-- Generation Time: May 05, 2023 at 07:55 PM
 -- Server version: 8.0.32
 -- PHP Version: 8.1.15
 
@@ -66,6 +66,18 @@ INSERT INTO `Decorations` (`id`, `Name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Events`
+--
+
+CREATE TABLE `Events` (
+  `id` int NOT NULL,
+  `name` varchar(512) NOT NULL,
+  `venuesid` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Flowers`
 --
 
@@ -114,6 +126,30 @@ INSERT INTO `UserProfile` (`id`, `name`, `emailid`, `contact`, `address`, `cakei
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Users`
+--
+
+CREATE TABLE `Users` (
+  `id` int NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`id`, `email`, `password`) VALUES
+(1, 'maria@gmail.com', 'maria'),
+(2, 'jibin@gmail.com', 'jibin'),
+(3, 'rishi@gmail.com', 'rishi'),
+(4, 'sabith@gmail.com', 'sabith'),
+(5, 'viji@gmail.com', 'viji'),
+(6, 'admin@gmail.com', 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Venues`
 --
 
@@ -155,6 +191,12 @@ ALTER TABLE `Decorations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `Events`
+--
+ALTER TABLE `Events`
+  ADD KEY `venuesid` (`venuesid`);
+
+--
 -- Indexes for table `Flowers`
 --
 ALTER TABLE `Flowers`
@@ -171,14 +213,36 @@ ALTER TABLE `UserProfile`
   ADD KEY `VenuesID` (`venuesid`);
 
 --
+-- Indexes for table `Users`
+--
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `Venues`
 --
 ALTER TABLE `Venues`
   ADD PRIMARY KEY (`id`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Users`
+--
+ALTER TABLE `Users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `Events`
+--
+ALTER TABLE `Events`
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`venuesid`) REFERENCES `Venues` (`id`);
 
 --
 -- Constraints for table `UserProfile`
