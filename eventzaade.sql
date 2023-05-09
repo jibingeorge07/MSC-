@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: May 05, 2023 at 07:55 PM
+-- Generation Time: May 09, 2023 at 11:22 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.1.15
 
@@ -99,6 +99,32 @@ INSERT INTO `Flowers` (`id`, `Name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `location`
+--
+
+CREATE TABLE `location` (
+  `id` int NOT NULL,
+  `Location` varchar(36) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`id`, `Location`) VALUES
+(1, 'London'),
+(2, 'Manchester'),
+(3, 'EPSOM'),
+(4, 'London'),
+(5, 'Manchester'),
+(6, 'Chelsea'),
+(7, 'Arsenal'),
+(8, 'Feltham'),
+(9, 'Brighton');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `UserProfile`
 --
 
@@ -156,23 +182,23 @@ INSERT INTO `Users` (`id`, `email`, `password`) VALUES
 CREATE TABLE `Venues` (
   `id` int NOT NULL,
   `Name` varchar(512) NOT NULL,
-  `Location` varchar(512) NOT NULL
+  `location_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `Venues`
 --
 
-INSERT INTO `Venues` (`id`, `Name`, `Location`) VALUES
-(1, 'hotel', 'London'),
-(2, 'hotel', 'Manchester'),
-(3, 'hotel', 'EPSOM'),
-(4, 'Banquet Hall', 'London'),
-(5, 'Banquet Hall', 'Manchester'),
-(6, 'Banquet Hall', 'CHELSEA'),
-(7, 'Park/Garden', 'ARSENAL'),
-(8, 'Park/Garden', 'FELTHAM'),
-(9, 'Park/Garden', 'BRIGHTON');
+INSERT INTO `Venues` (`id`, `Name`, `location_id`) VALUES
+(1, 'hotel', 1),
+(2, 'hotel', 2),
+(3, 'hotel', 3),
+(4, 'Banquet Hall', 4),
+(5, 'Banquet Hall', 5),
+(6, 'Banquet Hall', 6),
+(7, 'Park/Garden', 7),
+(8, 'Park/Garden', 8),
+(9, 'Park/Garden', 9);
 
 --
 -- Indexes for dumped tables
@@ -203,6 +229,12 @@ ALTER TABLE `Flowers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `UserProfile`
 --
 ALTER TABLE `UserProfile`
@@ -222,7 +254,8 @@ ALTER TABLE `Users`
 -- Indexes for table `Venues`
 --
 ALTER TABLE `Venues`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `location_id` (`location_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
