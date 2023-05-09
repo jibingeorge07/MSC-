@@ -75,6 +75,22 @@ CREATE TABLE `Events` (
   `venuesid` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+CREATE TABLE `Contact` (
+  `id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `message` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE `Contact`
+  ADD PRIMARY KEY (`id`);
+  
+ALTER TABLE `Contact`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+
+
 -- --------------------------------------------------------
 
 --

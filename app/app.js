@@ -99,6 +99,29 @@ app.get("/RSVP", function(req, res) {
     res.render("RSVP");
 });
 
+app.post('/contact_page', (req, res) => {
+  // Extract form data from the request body
+  const { name, email, message } = req.body;
+
+  // Save the form data to MySQL
+  db.query(
+    'INSERT INTO contact (name, email, message) VALUES (?, ?, ?)',
+    [name, email, message],
+     res.render('contact', { name }),  
+     (error, results) => {
+      if (error) {
+        console.error('Error saving form data to MySQL:', error);
+        res.sendStatus(500);
+      } 
+    }
+  )
+});
+
+
+app.get("/contact", function(req, res) {
+  res.render("contact");
+});
+
 app.get("/single_user/:id", async function (req, res) {
     if (req.session.authenticated) {
         var stId = req.params.id;
