@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: May 09, 2023 at 11:22 AM
+-- Generation Time: May 09, 2023 at 04:22 PM
 -- Server version: 8.0.32
 -- PHP Version: 8.1.15
 
@@ -45,6 +45,19 @@ INSERT INTO `Cake` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Contact`
+--
+
+CREATE TABLE `Contact` (
+  `id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `message` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Decorations`
 --
 
@@ -74,22 +87,6 @@ CREATE TABLE `Events` (
   `name` varchar(512) NOT NULL,
   `venuesid` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-CREATE TABLE `Contact` (
-  `id` int NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `message` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-ALTER TABLE `Contact`
-  ADD PRIMARY KEY (`id`);
-  
-ALTER TABLE `Contact`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
-
 
 -- --------------------------------------------------------
 
@@ -137,6 +134,22 @@ INSERT INTO `location` (`id`, `Location`) VALUES
 (7, 'Arsenal'),
 (8, 'Feltham'),
 (9, 'Brighton');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `RSVP`
+--
+
+CREATE TABLE `RSVP` (
+  `id` int NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `count` int NOT NULL,
+  `message` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -227,6 +240,12 @@ ALTER TABLE `Cake`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `Contact`
+--
+ALTER TABLE `Contact`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `Decorations`
 --
 ALTER TABLE `Decorations`
@@ -248,6 +267,12 @@ ALTER TABLE `Flowers`
 -- Indexes for table `location`
 --
 ALTER TABLE `location`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `RSVP`
+--
+ALTER TABLE `RSVP`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -276,6 +301,18 @@ ALTER TABLE `Venues`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `Contact`
+--
+ALTER TABLE `Contact`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `RSVP`
+--
+ALTER TABLE `RSVP`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `Users`

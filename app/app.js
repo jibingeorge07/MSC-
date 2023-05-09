@@ -99,6 +99,23 @@ app.get("/RSVP", function(req, res) {
     res.render("RSVP");
 });
 
+app.post('/rsvp_submit',(req,res)=>{
+  const{name,phone,email,address,count,message}= req.body;
+  db.query(
+    'INSERT INTO RSVP (name,phone,email,address,count,message) VALUES(?,?,?,?,?,?)',
+    [name,phone,email,address,count,message],
+    res.render('RSVP',{name}),
+    (err)=>{
+      if(err){
+        console.error(err);
+        res.sendstatus(500)('Error inserting reservation');
+      }
+    }
+  );
+});
+
+
+
 app.post('/contact_page', (req, res) => {
   // Extract form data from the request body
   const { name, email, message } = req.body;
