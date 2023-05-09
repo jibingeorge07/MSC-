@@ -95,6 +95,10 @@ app.post('/logout', function (req, res) {
     res.redirect('/admin');
 });
 
+app.get("/gallery", function(req, res) {
+  res.render("gallery");
+});
+
 app.get("/RSVP", function(req, res) {
     res.render("RSVP");
 });
@@ -104,7 +108,7 @@ app.post('/rsvp_submit',(req,res)=>{
   db.query(
     'INSERT INTO RSVP (name,phone,email,address,count,message) VALUES(?,?,?,?,?,?)',
     [name,phone,email,address,count,message],
-    res.render('RSVP',{name}),
+    res.render('index',{name}),
     (err)=>{
       if(err){
         console.error(err);
@@ -114,8 +118,6 @@ app.post('/rsvp_submit',(req,res)=>{
   );
 });
 
-
-
 app.post('/contact_page', (req, res) => {
   // Extract form data from the request body
   const { name, email, message } = req.body;
@@ -124,7 +126,7 @@ app.post('/contact_page', (req, res) => {
   db.query(
     'INSERT INTO contact (name, email, message) VALUES (?, ?, ?)',
     [name, email, message],
-     res.render('contact', { name }),  
+     res.render('index'),  
      (error, results) => {
       if (error) {
         console.error('Error saving form data to MySQL:', error);
